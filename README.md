@@ -1,9 +1,9 @@
 <h1 align='center'>
-  It's a Angular 11 applicaton with Supabase database.
+  This is an Angular 11 application with a Supabase database.
 </h1>
 
 <p align='center'>
-  Application made using Angular 11. 🚀 🚀 🚀
+  Application developed using Angular 11. 🚀 🚀 🚀
 </p>
 
 ## Some of the things I use
