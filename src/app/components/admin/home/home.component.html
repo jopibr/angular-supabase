@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-6 h-100">
+        <nb-card>
+            <nb-card-body>
+                <ngx-charts-pie-chart
+                       [legendTitle]="'Entradas/Saídas'"
+                       [scheme]="'solar'"
+                       [results]="movsTipo"
+                       [legend]="showLegend"
+                       [legendPosition]="legendPosition"
+                       [labels]="showLabels"
+                ></ngx-charts-pie-chart>
+            </nb-card-body>
+        </nb-card>
+    </div>
+    <div class="col-6 h-100">
+        <nb-card>
+            <nb-card-body>
+                <ngx-charts-bar-horizontal
+                       [legendTitle]="'Categorias'"
+                       [scheme]="'forest'"
+                       [results]="movsCategoria"
+                       [legend]="showLegend"
+                       [legendPosition]="legendPosition"
+                       [showDataLabel]="'true'"
+                       [showXAxisLabel]="showXAxisLabel"
+                       [showYAxisLabel]="showYAxisLabel"
+                       [showGridLines]="'true'"
+                ></ngx-charts-bar-horizontal>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <nb-card>
+            <nb-card-body>
+                <ngx-charts-bar-vertical
+                       [legendTitle]="'Moivmentações mês corrente'"
+                       [scheme]="'picnic'"
+                       [results]="movsProduto"
+                       [legend]="showLegend"
+                       [legendPosition]="legendPosition"
+                       [showXAxisLabel]="showXAxisLabel"
+                       [showYAxisLabel]="showYAxisLabel"
+                       [xAxisLabel]="'Produto'"
+                       [yAxisLabel]="'Quantidade movimentada'"
+                ></ngx-charts-bar-vertical>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>

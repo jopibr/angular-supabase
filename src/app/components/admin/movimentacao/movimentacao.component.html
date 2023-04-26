@@ -1,0 +1,98 @@
+<div class="card col-lg-12">
+  <div class="card-header">
+    <h3>
+      Movimentações
+      <button *ngIf="produtoSelecionado" type="button" (click)="add()" class="text-right btn btn-outline-info btn-lg">
+        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+      </button>
+    </h3>
+  </div>
+</div>
+<div class="row p-py-2">
+  <div class="col col-6 pt-1">
+    <div class="card-header bg-light-gray text-white">
+      <h3>Categorias</h3>
+    </div>
+    <div class="form-group p-py-1">
+      <ng-select style="width: 100%" placeholder="Selecione a categoria" [items]="categorias" bindLabel="nome"
+        [(ngModel)]="categoriaSelecionada" (change)="filterByCategoria()">
+      </ng-select>
+    </div>
+  </div>
+  <div class="col col-6 pt-1">
+    <div class="card-header bg-light text-white">
+      <h3>Produto</h3>
+    </div>
+    <div class="form-group p-py-1">
+      <ng-select [items]="produtos" placeholder="Selecione o produto" [(ngModel)]="produtoSelecionado" bindLabel="nome"
+        (change)="loadMovimentacoes()">
+        <ng-template ng-label-tmp let-item="item">
+          <h4> {{ item.nome }} </h4>
+        </ng-template>
+      </ng-select>
+    </div>
+  </div>
+</div>
+
+<nb-card *ngIf="view == 'form'" status="success">
+  <nb-card-header>Movimentação do {{ produtoSelecionado?.nome }}</nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <formly-form [model]="model" [fields]="fields" [form]="form">
+      </formly-form>
+    </form>
+  </nb-card-body>
+  <nb-card-footer>
+    <button [disabled]="!form?.valid" type="button" class="btn btn-primary btn-md float-right m-1" (click)="save()">
+      <i class="fa fa-check-circle"></i> {{ edit ? "Atualizar" : "Salvar" }}
+    </button>
+    <button type="button" class="btn btn-danger btn-md float-right m-1" (click)="cancel()">
+      <i class="fa fa-window-close"></i>Cancelar
+    </button>
+  </nb-card-footer>
+</nb-card>
+
+<div *ngIf="view == 'table' && produtoSelecionado" class="p-1 col-lg-12">
+  <table class="table table-striped table-hover table-bordered col-centered">
+    <thead class="thead-dark">
+      <tr>
+        <th class="text-center"></th>
+        <th class="text-center">Produto</th>
+        <th class="text-center">Tipo</th>
+        <th class="text-center">Quantidade</th>
+        <th class="text-center">Data</th>
+        <th class="text-center">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let mov of movimentacoes">
+        <td class="text-center">
+          <i *ngIf="mov.tipo == 'Entrada'" style="color:green" class="fa fa-arrow-circle-up fa-2x"></i>
+          <i *ngIf="mov.tipo == 'Saída'" style="color:red" class="fa fa-arrow-circle-down fa-2x"></i>
+        </td>
+        <td class="text-center">{{ mov.tipo }}</td>
+        <td class="text-center">{{ mov.produtos?.nome }}</td>
+        <td class="text-center">{{ mov.quantidade }}</td>
+        <td class="text-center">
+          {{ mov.dataMovimentacao | date: "dd/MM/yyyy" }}
+        </td>
+        <td class="text-center m-4 p-2">
+          <button type="button" (click)="seleciona(mov)" class="btn btn-success">
+            <i class="fa fa-edit"></i>
+          </button>
+          <button type="button" (click)="remove(mov)" class="btn btn-danger ml-1">
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
+
+  <div class="text-center">
+    <a [routerLink]="['../']" class="btn btn-primary text-white">
+      <i class="fa fa-backward" aria-hidden="true"></i>
+      Voltar</a>
+  </div>
+</div>

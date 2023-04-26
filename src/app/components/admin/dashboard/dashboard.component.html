@@ -1,0 +1,22 @@
+<nb-layout>
+
+    <nb-layout-header>
+        <button (click)="toogle()" class="btn btn-lg">
+            <i class="fa fa-bars" ></i>
+        </button>
+    </nb-layout-header>
+
+    <nb-sidebar
+        tag="menu-main" state="expanded">
+
+        <img class="rounded img-fluid" src="/assets/images/logo-sm.png"/>
+        <nb-menu tag="menu" [items]="itens"></nb-menu>
+
+    </nb-sidebar>
+
+
+    <nb-layout-column>
+        <router-outlet></router-outlet>
+    </nb-layout-column>
+
+</nb-layout>

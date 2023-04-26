@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="img">
+        <img src="assets/images/bg.svg" />
+    </div>
+
+    <div class="login-content">
+        <form [formGroup]="form" (ngSubmit)="login()">
+            <img src="assets/images/avatar.svg" />
+            <h2 class="title">App Estoque</h2>
+
+            <div class="input-group form-group m-2">
+                <input type="text" formControlName="email" name="email" class="form-control" placeholder="Email" />
+            </div>
+
+            <div class="input-group form-group m-2">
+                <input type="password" formControlName="password" name="password" class="form-control"
+                    placeholder="Senha" />
+            </div>
+
+            <div *ngIf="message" class="alert alert-danger" role="alert">
+                {{message}}
+            </div>
+
+            <input type="submit" [disabled]="!form.valid" class="btn" value="Login" />
+
+            <ngx-spinner size="medium" color="#fff" type="timer" [fullScreen]="true">
+                <p style="color: #fff">Autenticando...</p>
+            </ngx-spinner>
+
+        </form>
+    </div>
+
+
+</div>

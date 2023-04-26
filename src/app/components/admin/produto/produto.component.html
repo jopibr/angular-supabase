@@ -1,0 +1,68 @@
+<div class="p-1">
+
+    <div class="card col-lg-12">
+        <div class="card-header">
+            <h3>Produtos
+                <button type="button" (click)="add()" class="btn btn-outline-info btn-lg">
+                    <i class="fa fa-plus-circle"></i>
+                </button>
+            </h3>
+        </div>
+    </div>
+
+    <div *ngIf="view == 'table'" class="p-1 col-lg-12">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th class="text-center">Nome</th>
+                    <th class="text-center">Descrição</th>
+                    <th class="text-center">Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let produto of produtos">
+                    <td class="text-center">{{produto.nome}}</td>
+                    <td class="text-center">{{produto.descricao}}</td>
+                    <td class="text-center m-2">
+                        <button type="button" (click)="seleciona(produto)" class="btn btn-success m-1">
+                            <i class="fa fa-edit"></i>
+                        </button>
+                        <button type="button" (click)="remove(produto)" class="btn btn-danger">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <nb-card *ngIf="view == 'form'" status="success">
+        <nb-card-header>Dados cadastrais</nb-card-header>
+
+        <nb-card-body>
+            <form [formGroup]="form">
+                <formly-form [model]="model" [fields]="fields" [form]="form">
+                </formly-form>
+            </form>
+        </nb-card-body>
+
+        <nb-card-footer class="action-footer">
+            <button [disabled]="!form.valid" type="button" class="btn btn-primary btn-md" (click)="save()">
+                <i class="fa fa-check-circle"></i>
+                {{ edit ? "Atualizar" : "Salvar" }}
+            </button>
+
+            <button
+                type="button"
+                class="btn btn-danger btn-md"
+                (click)="cancel()"
+            >
+            <i class="fa fa-window-close"></i>
+            Cancelar
+            </button>
+        </nb-card-footer>
+        
+    </nb-card>
+
+</div>

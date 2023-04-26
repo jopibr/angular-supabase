@@ -1,0 +1,27 @@
+@import 'themes';
+@import "../node_modules/bootswatch/dist/minty/variables";
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/bootswatch/dist/minty/bootswatch";
+
+@import '../node_modules/font-awesome/scss/font-awesome.scss';
+@import '~@nebular/theme/styles/globals';
+
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+@include nb-install() {
+  @include nb-theme-global();
+};
+/* You can add global styles to this file, and also import other style files */
+
+:root{
+  .action-footer{
+    display: flex;
+    justify-content: flex-end;
+  
+    button{
+        margin-left: 10px;
+        width: 120px;
+    }
+  }
+
+}
